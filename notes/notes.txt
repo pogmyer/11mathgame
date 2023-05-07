@@ -1,0 +1,55 @@
+
+
+GENERATE A RANDOM NUMBER WITH JS
+
+////////////////////////////////////////////////////////////////////////
+
+        function generateNumber (max) {                                     
+            return Math.floor(Math.random() * (max + 1))
+        }  
+
+        generateNumber()
+
+////////////////////////////////////////////////////////////////////////
+
+    To Write Some Js:
+    Browser > More Tools > Web Developer Tools > Console 
+
+    - js has a built-in object called Math 
+        Math                                        // this is a built-in "Object" - which is to say that it is a part of the js language itself
+        Math.                                       // the "." "looks inside "Math" for a "Method"
+        Math.random()                          // the "." "looks inside "Math" for a "Method" called "random()"
+                                                               - random() returns numbers just above 0 to just under 1
+                                                               - random() * 10 gives whole numbers
+                                                                    - the above wont ever give "10" so:      random() * 11
+    - "floor" will give only the whole number part so:
+        Math.floor(Math.random() * 11)  
+  
+
+        in js:
+////////////////////////////////////////////////////////////////////////
+
+        function generateNumber (max) {                                     
+            return Math.floor(Math.random() * (max + 1))
+        }  
+
+        generateNumber()
+
+////////////////////////////////////////////////////////////////////////
+
+                    // "generateNumber" is made-up (could be anything)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
