@@ -1,6 +1,8 @@
 const problemElement = document.querySelector(".problem")
 const ourForm = document.querySelector(".our-form")
 const ourField = document.querySelector(".our-field")
+const pointsNeeded = document.querySelector(".points-needed")
+const mistakesAllowed = document.querySelector(".mistakes-allowed")
 
 let state = {
     score: 0, 
@@ -8,8 +10,14 @@ let state = {
 }
 
 function updateProblem() {
-    state.currentProblem = generateProblem()
+    state.currentProblem = generateProblem() 
     problemElement.innerHTML = `${state.currentProblem.numberOne} ${state.currentProblem.operator} ${state.currentProblem.numberTwo}`
+    ourField.value = ""
+    ourField.focus()
+    // generates new problem and stores it in our "state"
+    // then renders it to our user interface
+    // clears out field getting ready for next answer
+    // put the focus on the field again
 }
 
 updateProblem()
@@ -38,8 +46,11 @@ function handleSubmit(e) {
     if (p.operator == "x") correctAnswer = p.numberOne * p.numberTwo
 
     if (parseInt(ourField.value, 10) === correctAnswer) {
-        alert("right")
+        state.score++
+        pointsNeeded.textContent = 10 - state.score
+        updateProblem()
     } else {
-        alert("wrong")
+        state.wrongAnswers++
+        mistakesAllowed.textContent = 2 - state.wrongAnswers
     }
 }
