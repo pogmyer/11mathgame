@@ -4,6 +4,8 @@ const ourField = document.querySelector(".our-field")
 const pointsNeeded = document.querySelector(".points-needed")
 const mistakesAllowed = document.querySelector(".mistakes-allowed")
 const progressBar = document.querySelector(".progress-inner")
+const endMessage = document.querySelector(".end-message")
+const resetButton = document.querySelector(".reset-button")
 
 let state = {
     score: 0, 
@@ -54,6 +56,8 @@ function handleSubmit(e) {
     } else {
         state.wrongAnswers++
         mistakesAllowed.textContent = 2 - state.wrongAnswers
+        problemElement.classList.add("animate-wrong")
+        setTimeout(() => problemElement.classList.remove("animate-wrong"), 551)
     }
     checkLogic()
 }
@@ -61,23 +65,28 @@ function handleSubmit(e) {
 function checkLogic() {
     // if you won
     if (state.score === 10) {
-        alert("You Won!")
-        resetGame()
+        endMessage.textContent = "Congrats! You won!"
+        document.body.classList.add("overlay-is-open")
+        setTimeout(() => resetButton.focus(), 331)
     }
 
     // if you lost
     if (state.wrongAnswers === 3) {
-        alert("Oops, You Lost. Try again.")
-        resetGame()
+        endMessage.textContent = "Sorry! You lost."
+        document.body.classList.add("overlay-is-open")
+        setTimeout(() => resetButton.focus(), 331)
     }
 
 }
 
+resetButton.addEventListener("click", resetGame)
+
 function resetGame() {
+    document.body.classList.remove("overlay-is-open")
     updateProblem()
     state.score = 0
     state.wrongAnswers = 0
-    pointsNeeded.Needed.textContent = 10
+    pointsNeeded.textContent = 10
     mistakesAllowed.textContent = 2
     renderProgressBar()
 }
